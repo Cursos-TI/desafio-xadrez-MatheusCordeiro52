@@ -1,32 +1,244 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+void imprimirDirecao(){ //procedimento para imprimir a direção da peça
+    printf("Movimentação da peça:\n");
+    printf("1. Direita:\n");
+    printf("2. Cima:\n");
+    printf("3. Esquerda:\n");
+    printf("4. Baixo:\n");
+    
+}
+void imprimirDirecaoCavalo(){ //Procedimento para imprimir direção do cavalo
+    printf("Movimentação da peça:\n"); //Saida para saber qual direção a peça se movimentará
+    printf("1. Cima Direita:\n");
+    printf("2. Cima Esquerda:\n");
+    printf("3. Direita cima:\n");
+    printf("4. Esquerda Cima:\n");
+    printf("5. Direita Baixo\n");
+    printf("6. Esquerda Baixo\n");
+    printf("7. Baixo Direita\n");
+    printf("8. Baixo Esquerda\n");
+}
+void imprimirDirecaoBispo(){
+    printf("Movimentação da peça:\n"); //Saida para saber qual direção a peça se movimentará
+    printf("1.Diagonal para cima e direita:\n");
+    printf("2.Diagonal para cima e esquerda:\n");
+    printf("3.Diagonal para baixo e direita:\n");
+    printf("4.Diagonal para baixo e esquerda:\n");
+}
 
-int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+void moverPecaDireita(int casas){//procedimento para imprimir direita caso usuario escolha direita
+    if(casas > 0){
+        printf("Direita\n");
+        moverPecaDireita(casas-1);
+    }
+}
+void moverPecaEsquerda(int casas){//procedimento para imprimir esquerda caso usuario escolha esquerda
+    if(casas > 0){
+        printf("Esquerda\n");
+        moverPecaEsquerda(casas-1);
+    }
+}
+void moverPecaCima(int casas){//procedimento para imprimir cima caso usuario escolha cima
+    if(casas > 0){
+        printf("Cima\n");
+        moverPecaCima(casas-1);
+    }
+}
+void moverPecaBaixo(int casas){//procedimento para imprimir baixo caso usuario escolha baixo
+    if(casas > 0){
+        printf("Baixo\n");
+        moverPecaBaixo(casas-1);
+    }
+}
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+int main(){
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    // Variaveis das peças
+    int torre, bispo = 0, rainha, cavalo; 
+    int casaTorre, casaBispo = 8, casaRainha, movimentoCavalo = 1;
+    int peca;
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+    // Escolha de qual peça mover
+    printf("Qual peça deseja mover:\n");
+    printf("1.Torre:\n");
+    printf("2.Bispo:\n");
+    printf("3.Rainha:\n");
+    printf("4.Cavalo:\n");
+    printf("5.Sair\n");
+    scanf("%d", &peca);
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+    switch (peca)
+    { //movimentação usando for
+    case 1: //Saida para saber qual direção a peça se movimentará
+        imprimirDirecao();
+        scanf("%d", &torre);
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+        printf("Quantas casas a torre deve percorrer:\n"); // saida para saber quantas casas percorrer
+        scanf("%d", &casaTorre);
+        // bloco de código para mostrar resultado
+        switch (torre){ 
+        case 1:
+            moverPecaDireita(casaTorre);
+        break;
+        case 2: 
+            moverPecaCima(casaTorre);
+        break;
+        case 3:
+            moverPecaEsquerda(casaTorre);   
+        break;
+        case 4:
+            moverPecaBaixo(casaTorre);
+        break;
+        }
+    case 2: // movimentação usando while
+        imprimirDirecaoBispo();
+        scanf("%d", &bispo);
+    
+        printf("Quantas casas o bispo deve percorrer:"); // saida para saber quantas casas percorrer
+        scanf("%d", &casaBispo); 
+    switch (bispo){ // bloco de código para mostrar resultado
+        case 1:
+            while (casaBispo > 0)
+            {
+                printf("cima, Direita\n");
+                casaBispo--;
+            }
+        break;
+        case 2:
+            while (casaBispo > 0)
+            {
+                printf("cima, Esquerda\n");
+                casaBispo--;
+            }
+        break;
+        case 3:
+            while (casaBispo > 0)
+            {
+                printf("Baixo, Direita\n");
+                casaBispo--;
+            }
+        break;
+        case 4:
+            while (casaBispo > 0)
+            {
+                printf("Baixo, Esquerda\n");
+                casaBispo--;
+            }
+        break;
+    }
 
+    case 3:
+    imprimirDirecao();
+    scanf("%d", &rainha);
+
+    printf("Quantas casas a rainha deve percorrer:"); // saida para saber quantas casas percorrer
+    scanf("%d", &casaRainha);  
+
+    switch (rainha) {   // bloco de código para mostrar resultado
+        case 1:
+        moverPecaDireita(casaRainha);
+        break;
+        case 2:
+        moverPecaCima(casaRainha);
+        break;
+        case 3:
+        moverPecaEsquerda(casaRainha);
+        break;
+        case 4:
+        moverPecaBaixo(casaRainha);
+        break;
+    }
+    case 4:
+    imprimirDirecaoCavalo();
+    scanf("%d", &cavalo);
+        switch (cavalo)
+        {
+        case 1:
+        while (movimentoCavalo--)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                printf("cima\n");
+            }
+        
+        }
+        break;
+        case 2:
+        while (movimentoCavalo--)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                printf("cima\n");
+            }
+        printf("Esquerda\n");    
+        }
+        break;
+        case 3:
+        while (movimentoCavalo--)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                
+            }
+        printf("Cima\n");    
+        }
+        break;
+        case 4:
+        while (movimentoCavalo--)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                printf("Esquerda\n");
+            }
+        printf("Cima\n");    
+        }
+        break;
+
+        case 5:
+        while (movimentoCavalo--)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                
+            }
+        printf("Baixo\n");    
+        }
+        break;
+
+        case 6:
+        while (movimentoCavalo--)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                printf("Esquerda\n");
+            }
+        printf("Baixo\n");    
+        }
+        break;
+
+        case 7:
+        while (movimentoCavalo--)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                printf("Baixo\n");
+            }
+        
+        }
+        break;
+
+        case 8:
+        while (movimentoCavalo--)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                printf("Baixo\n");
+            }
+        printf("Esquerda\n");    
+        }
+        break;      
+    }
     return 0;
 }
